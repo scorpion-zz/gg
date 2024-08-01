@@ -1,0 +1,32 @@
+.registr{
+background-color: bisque;
+color: black;
+display: flex;
+align-items: center;
+flex-direction: column;
+}
+
+
+.form_registr{
+
+}
+
+.button_registr{
+padding: 5px;
+background-color: bisque;
+border-radius: 5px;
+color: darkmagenta;
+display: flex;
+align-items: center;
+flex-direction: column;
+
+font-family: "Lemon_Tuesday";
+font-size: 15px;
+font-weight: 400;
+font-style: normal;
+
+&:hover{
+background-color: coral;
+color: bisque;
+}
+}

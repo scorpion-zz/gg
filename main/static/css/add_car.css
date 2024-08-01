@@ -1,0 +1,61 @@
+.form_add_car{
+background-color: bisque;
+padding 20px;
+}
+
+.wrapper{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 20px;
+}
+
+.add_car_title{
+font-family: "Lemon_Tuesday";
+font-size: 20px;
+font-weight: 400;
+font-style: normal;
+color: black;
+}
+
+.car_form{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+& label{
+color: black;
+}
+& input{
+min-width: 300px;
+max-width: 300px;
+}
+& textarea{
+min-width: 300px;
+max-width: 300px;
+}
+& select{
+min-width: 300px;
+max-width: 300px;
+}
+}
+
+.save_car_button{
+margin-top: 20px;
+padding: 10px;
+background-color: blueviolet;
+font-family: "Lemon_Tuesday";
+font-size: 20px;
+font-weight: 400;
+font-style: normal;
+color: bisque;
+border-radius: 15px;
+cursor: pointer;
+&:hover{
+color: aqua;
+background-color: green;
+align-items: center;
+justify-content: center;
+}
+}

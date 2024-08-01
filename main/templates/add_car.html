@@ -1,0 +1,25 @@
+{% extends "page_1.html" %}
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static 'css/add_car.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="form_add_car">
+    <div class="wrapper">
+        <h1 class="add_car_title">
+            Добавление автомобиля
+        </h1>
+        <form actoin="" method="POST" enctype="multipart/form-data" class="car_form">
+            {% csrf_token %}
+          <table >
+              {{ forms.as_table }}
+          </table>
+            <input type="submit" class="save_car_button" value="Отправить">
+        </form>
+    </div>
+</div>
+{% endblock %}

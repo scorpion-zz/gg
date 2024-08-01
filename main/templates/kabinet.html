@@ -1,0 +1,71 @@
+{% extends 'page_1.html' %}
+{% load static %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/kabinet.css' %}">
+<link rel="stylesheet" href="{% static 'css/autoriz.css' %}">
+<link rel="stylesheet" href="{% static 'css/cart_detali.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="kabinet">
+{% if log_form and pass_form %}
+<form action="" method="POST">
+    <div class="new_username">
+        {% csrf_token %}
+        {{ log_form.as_table }}
+        <input type="text" value="{{ user.username }}">
+        <button class="enter">Изменить</button>
+    </div>
+</form>
+
+
+<form action="" method="POST">
+    <div class="new_password">
+        {% csrf_token %}
+        {{ pass_form.as_table }}
+        <button class="enter">Изменить</button>
+    </div>
+</form>
+    {% endif %}
+
+    <a href="{% url 'my_orders' %} " style="color:black;">Мои заказы</a>
+
+    {% if orders %}
+    {% for item in orders %}
+    <div>
+        Номер заказа: {{ item.id }}, дата заказа:  {{ item.created }}
+    </div>
+<table>
+        <thead>
+            <tr>
+                <th>Изображение</th>
+                <th>Продукт</th>
+                <th>Количество</th>
+                <th>Стоимость за единицу</th>
+                <th>Стоимость</th>
+            </tr>
+        </thead>
+    {% for order_item in item.items.all%}
+         {% with product=order_item.product %}
+        <tbody>
+        <tr>
+        <td>
+            <a href="{% url 'detail_info' product.id %}" class="cart_img">
+                <img src="{{product.image.url}}" alt="">
+            </a>
+        </td>
+        <td>{{product.brand}}  {{product.model}}</td>
+        <td>{{ order_item.quantity }}</td>
+        <td>{{ order_item.price }}</td>
+        <td>{{ order_item.get_cost }}</td>
+        </tr>
+        </tbody>
+        {% endwith %}
+    {% endfor %}
+    </table>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}

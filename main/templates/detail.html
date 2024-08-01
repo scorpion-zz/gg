@@ -1,0 +1,51 @@
+{% extends 'page_1.html' %}
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="detail_info">
+    <div class="wrapper">
+        <div class="block_images">
+            <div class="main_image">
+                <img src="{{ car.image.url }}" alt="">
+            </div>
+            <div class="additional_images">
+                {% for add_image in car.additionalcarimage_set.all %}
+                <div class="additional_image">
+                    <img src="{{ add_image.image.url }}" alt="">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="block_info">
+            <ul class="car_info">
+                <li>
+                    {{ car.description }}
+                </li>
+                <li>
+                    {% for manufacturer in car.manufacturer.all %}
+                    {{ manufacturer.title }}
+                    {% endfor %}
+                </li>
+            </ul>
+
+
+<!--            Brend -&#45;&#45; {{ car.brand }}-->
+<!--            Price -&#45;&#45;  {{ car.price }}-->
+<!--            Zavod &#45;&#45;&#45;&#45;  {{ car.manufacturer }}-->
+            <form action="{% url 'cart_add' car.id %}" method="POST">
+                {% csrf_token %}
+                <table>
+                    {{form.as_table}}
+                </table>
+                <button class="enter">Добавить в корзину</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
